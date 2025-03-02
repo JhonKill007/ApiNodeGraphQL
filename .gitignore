@@ -1,0 +1,45 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+*.gz
+*.out
+*.pid
+*.seed
+
+# Configuración del entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Archivos de bases de datos y configuración local
+*.sqlite
+*.sqlite3
+*.bak
+*.mdf
+*.ldf
+/sequelize-meta.json
+/database.json
+
+# Cache y dependencias innecesarias
+coverage/
+.nyc_output/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Archivos de compilación
+dist/
+build/
+*.tsbuildinfo
+
+# Docker y despliegue
+docker-compose.override.yml
