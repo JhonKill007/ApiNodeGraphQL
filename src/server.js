@@ -1,8 +1,14 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import typeDefs from "./typeDefs/typeDefs.js";
-import resolvers from "./resolvers/resolvers.js";
+import UserTypeDefs from "./typeDefs/UserTypeDefs.js";
+import UserResolvers from "./resolvers/UserResolvers.js";
 import sequelize from "./config/database.js";
+import { mergeTypeDefs, mergeResolvers } from "@graphql-tools/merge";
+
+
+// Unir los esquemas y resolvers
+const typeDefs = mergeTypeDefs([UserTypeDefs]);
+const resolvers = mergeResolvers([UserResolvers]);
 
 // Método para probar la conexión
 async function testConnection() {

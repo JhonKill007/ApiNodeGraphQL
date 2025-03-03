@@ -1,7 +1,7 @@
 // import data from "./database/data.js";
 import { User } from "../models/User.js";
 
-const resolvers = {
+const UserResolvers = {
   Query: {
     users: async () => {
       return await User.findAll();
@@ -55,4 +55,4 @@ const resolvers = {
   },
 };
 
-export default resolvers;
+export default UserResolvers;

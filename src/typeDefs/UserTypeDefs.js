@@ -1,6 +1,6 @@
 import { buildSchema } from "graphql";
 
-const typeDefs = buildSchema(`
+const UserTypeDefs = buildSchema(`
     type User {
       id: ID!
       name: String
@@ -18,4 +18,4 @@ const typeDefs = buildSchema(`
     }
 `);
 
-export default typeDefs;
+export default UserTypeDefs;
