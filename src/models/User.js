@@ -6,7 +6,7 @@ export const User = sequelize.define("Users", {
   Name: DataTypes.STRING,
   Username: DataTypes.STRING,
   Email: DataTypes.STRING,
-  Rool: DataTypes.STRING,
+  Rool: DataTypes.INTEGER,
 });
 
 // discountPercent: DataTypes.FLOAT,
