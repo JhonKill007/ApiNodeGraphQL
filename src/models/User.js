@@ -1,21 +1,32 @@
-import { Sequelize, DataTypes } from "sequelize";
-import sequelize from "../sequelize/sequelize.js";
+import { DataTypes } from "sequelize";
+import sequelize from "../config/database.js";
 
 export const User = sequelize.define("Users", {
-  Id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  Name: DataTypes.STRING,
-  Username: DataTypes.STRING,
-  Email: DataTypes.STRING,
-  Rool: DataTypes.INTEGER,
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    field: "Id",
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    field: "Name",
+  },
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    field: "Username",
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    field: "Email",
+  },
+  role: {
+    type: DataTypes.INTEGER,
+    field: "Role",
+  },
 });
-
-// discountPercent: DataTypes.FLOAT,
-// payMethod: DataTypes.STRING,
-// createDate: DataTypes.DATE,
-// byDelivery: DataTypes.BOOLEAN,
-// userCode: DataTypes.STRING,
-// rncOCedula: DataTypes.STRING,
-// razonSocial: DataTypes.STRING,
-// payWith: DataTypes.FLOAT,
-// branchId: DataTypes.STRING,
-// isActive: DataTypes.BOOLEAN,
