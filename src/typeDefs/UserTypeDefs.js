@@ -6,16 +6,21 @@ const UserTypeDefs = buildSchema(`
       name: String
       username: String,
       email: String,
+      status: Int,
       role: Int,
     }
 
     type Query {
-      users: [User]
-      user(id: ID!): User
-      createUser(name: String!, username: String!, email: String!, role: Int!): Boolean
-      updateUser(id: ID!, name: String!, username: String!, email: String!, role: Int!): Boolean
-      deleteUser(id: ID!): Boolean
+      getAllUsers: [User]
+      usersByRole(role: Int!): [User]
+      searchUser(param: String!): [User]
+      userById(id: ID!): User
+      createUser(name: String!, username: String!, email: String!, status: Int!, role: Int!): Boolean
+      updateUser(id: ID!, name: String!, username: String!, email: String!): Boolean
+      
     }
 `);
 
 export default UserTypeDefs;
+
+//deleteUser(id: ID!): Boolean

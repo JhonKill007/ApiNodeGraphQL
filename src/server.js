@@ -1,26 +1,38 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
+
+//types
 import UserTypeDefs from "./typeDefs/UserTypeDefs.js";
+import RoleTypeDefs from "./typeDefs/RoleTypeDefs.js";
+import StatusTypeDefs from "./typeDefs/StatusTypeDefs.js";
+
+//resolver
 import UserResolvers from "./resolvers/UserResolvers.js";
+import RoleResolvers from "./resolvers/RoleResolvers.js";
+import StatusResolvers from "./resolvers/StatusResolvers.js";
+
 import sequelize from "./config/database.js";
 import { mergeTypeDefs, mergeResolvers } from "@graphql-tools/merge";
 
-
 // Unir los esquemas y resolvers
-const typeDefs = mergeTypeDefs([UserTypeDefs]);
-const resolvers = mergeResolvers([UserResolvers]);
+const typeDefs = mergeTypeDefs([UserTypeDefs, RoleTypeDefs, StatusTypeDefs]);
+const resolvers = mergeResolvers([
+  UserResolvers,
+  RoleResolvers,
+  StatusResolvers,
+]);
 
 // Método para probar la conexión
 async function testConnection() {
   try {
     await sequelize.authenticate();
-    console.log('Conexión establecida correctamente con la base de datos.');
+    console.log("Conexión establecida correctamente con la base de datos.");
 
     // Sincronizar modelos con la base de datos
     await sequelize.sync({ force: false }); // <-- Crea las tablas automáticamente
-    console.log('Tablas sincronizadas correctamente.');
+    console.log("Tablas sincronizadas correctamente.");
   } catch (error) {
-    console.error('No se pudo conectar a la base de datos:', error);
+    console.error("No se pudo conectar a la base de datos:", error);
   }
 }
 

@@ -1,12 +1,12 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
 
-export const User = sequelize.define("Users", {
+export const User = sequelize.define("TBL_Users", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-    field: "Id",
+    field: "ID",
   },
   name: {
     type: DataTypes.STRING,
@@ -25,8 +25,14 @@ export const User = sequelize.define("Users", {
     unique: true,
     field: "Email",
   },
+  status: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: "StatusID",
+  },
   role: {
     type: DataTypes.INTEGER,
-    field: "Role",
+    allowNull: false,
+    field: "RoleID",
   },
 });

@@ -1,7 +1,8 @@
 import { Sequelize } from "sequelize";
+import 'dotenv/config'
 
-const sequelize = new Sequelize("graphql", "sa", "R00TP@22w0r231920", {
-  host: "94.72.114.203",
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
   port: 1433,
   dialect: "mssql",
   dialectOptions: {
