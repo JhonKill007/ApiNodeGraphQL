@@ -1,5 +1,7 @@
 import { Sequelize } from "sequelize";
 import { User } from "../models/User.js";
+import { Role } from "../models/Role.js";
+import { Status } from "../models/Status.js";
 const { Op } = Sequelize;
 
 const UserResolvers = {
@@ -7,6 +9,31 @@ const UserResolvers = {
     getAllUsers: async () => {
       return await User.findAll();
     },
+
+    getAllUsersWithRole: async () => {
+      const result = await User.findAll({
+        include: [{ model: Role, as: "Role" }],
+      });
+
+      return result.map(user => ({
+        ...user.get({ plain: true }),
+        role: user.Role, 
+      }));
+    },
+
+    getAllUsersWithStatus: async () => {
+      const result = await User.findAll({
+        include: [{ model: Status, as: "Status" }],
+      });
+      
+      console.log(JSON.stringify(users, null, 2));
+      // return result.map(user => ({
+      //   ...user.get({ plain: true }),
+      //   status: user.Status, 
+      // }));
+      return result;
+    },
+
 
     usersByRole: async (_, { role }) => {
       return await User.findAll({

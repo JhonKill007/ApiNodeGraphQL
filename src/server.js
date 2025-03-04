@@ -2,17 +2,18 @@ import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
 //types
-import UserTypeDefs from "./typeDefs/UserTypeDefs.js";
 import RoleTypeDefs from "./typeDefs/RoleTypeDefs.js";
 import StatusTypeDefs from "./typeDefs/StatusTypeDefs.js";
+import UserTypeDefs from "./typeDefs/UserTypeDefs.js";
 
 //resolver
-import UserResolvers from "./resolvers/UserResolvers.js";
 import RoleResolvers from "./resolvers/RoleResolvers.js";
 import StatusResolvers from "./resolvers/StatusResolvers.js";
+import UserResolvers from "./resolvers/UserResolvers.js";
 
 import sequelize from "./config/database.js";
 import { mergeTypeDefs, mergeResolvers } from "@graphql-tools/merge";
+import "./relations/Relations.js";
 
 // Unir los esquemas y resolvers
 const typeDefs = mergeTypeDefs([UserTypeDefs, RoleTypeDefs, StatusTypeDefs]);
@@ -21,6 +22,7 @@ const resolvers = mergeResolvers([
   RoleResolvers,
   StatusResolvers,
 ]);
+
 
 // Método para probar la conexión
 async function testConnection() {

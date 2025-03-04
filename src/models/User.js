@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
+import { Status } from "./Status.js";
+import { Role } from "./Role.js";
 
 export const User = sequelize.define("TBL_Users", {
   id: {
@@ -36,3 +38,4 @@ export const User = sequelize.define("TBL_Users", {
     field: "RoleID",
   },
 });
+
