@@ -10,28 +10,19 @@ const UserResolvers = {
       return await User.findAll();
     },
 
-    getAllUsersWithRole: async () => {
+    getAllUsersWithStatusAndRole: async () => {
       const result = await User.findAll({
-        include: [{ model: Role, as: "Role" }],
+        include: [
+          { model: Role, as: "Role" },
+          { model: Status, as: "Status" },
+        ],
       });
 
-      return result.map(user => ({
+      return result.map((user) => ({
         ...user.get({ plain: true }),
-        role: user.Role, 
+        status: user.Status,
+        role: user.Role,
       }));
-    },
-
-    getAllUsersWithStatus: async () => {
-      const result = await User.findAll({
-        include: [{ model: Status, as: "Status" }],
-      });
-      
-      console.log(JSON.stringify(users, null, 2));
-      // return result.map(user => ({
-      //   ...user.get({ plain: true }),
-      //   status: user.Status, 
-      // }));
-      return result;
     },
 
 

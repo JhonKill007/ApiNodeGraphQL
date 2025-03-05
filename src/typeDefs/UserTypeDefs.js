@@ -6,8 +6,17 @@ const UserTypeDefs = buildSchema(`
       name: String
       username: String,
       email: String,
-      status: Int,
+      status: Status,
       role: Role,
+    }
+
+    type JustUser {
+      id: ID!
+      name: String
+      username: String,
+      email: String,
+      status: Int,
+      role: Int,
     }
 
     type Role {
@@ -21,8 +30,8 @@ const UserTypeDefs = buildSchema(`
     }
 
     type Query {
-      getAllUsers: [User]
-      getAllUsersWithRole: [User]
+      getAllUsers: [JustUser]
+      getAllUsersWithStatusAndRole: [User]
       usersByRole(role: Int!): [User]
       searchUser(param: String!): [User]
       userById(id: ID!): User
